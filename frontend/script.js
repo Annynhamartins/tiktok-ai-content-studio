@@ -1,4 +1,4 @@
-ocument.getElementById('btnGerar').addEventListener('click', async function() {
+document.getElementById('btnGerar').addEventListener('click', async function() {
     const tema = document.getElementById('tema').value.trim();
     const plataforma = document.getElementById('plataforma').value;
     const btn = document.getElementById('btnGerar');
