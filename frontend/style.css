@@ -1,15 +1,120 @@
-body{
-    font-family: Arial, sans-serif;
-    background:#121212;
-    color:white;
-    text-align:center;
-    margin-top:60px;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
 }
 
-button{
-    padding:15px;
-    margin:10px;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
+body {
+    background-color: #0f0f12;
+    color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 650px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    color: #fe2c55;
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+}
+
+header p {
+    color: #a0a0a0;
+    font-size: 0.95rem;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #ddd;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background-color: #1a1a24;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+}
+
+input:focus, select:focus {
+    border-color: #fe2c55;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(45deg, #fe2c55, #25f4ee);
+    color: #000;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+    margin-top: 10px;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.resultado-card {
+    background: #1a1a24;
+    padding: 20px;
+    border-radius: 12px;
+    margin-top: 25px;
+    border: 1px solid #2a2a38;
+}
+
+.hidden {
+    display: none;
+}
+
+.resultado-card h2 {
+    color: #25f4ee;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.bloco {
+    background: #0f0f12;
+    padding: 12px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+}
+
+.bloco h3 {
+    font-size: 0.9rem;
+    color: #fe2c55;
+    margin-bottom: 5px;
+}
+
+.bloco p {
+    font-size: 0.95rem;
+    color: #ccc;
+    line-height: 1.4;
+    white-space: pre-line;
 }
