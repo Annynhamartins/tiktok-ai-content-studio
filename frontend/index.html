@@ -3,14 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estúdio de Conteúdo TikTok-AI</title>
+    <title>TikTok-AI Studio</title>
     <link rel="stylesheet" href="estilo.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="card">
-        <h1>🚀 TikTok-AI Studio</h1>
-        <p>Plataforma para criar roteiros, legendas, hashtags e prompts para TikTok, Instagram e Shopee.</p>
-        <button id="btnGerar">Gerar Conteúdo</button>
+    <div class="container">
+        <header>
+            <h1>🚀 TikTok-AI Studio</h1>
+            <p>Gerador automatizado de roteiros, legendas, hashtags e prompts para redes sociais.</p>
+        </header>
+
+        <main>
+            <div class="form-group">
+                <label for="plataforma">Plataforma Alvo:</label>
+                <select id="plataforma">
+                    <option value="tiktok">TikTok</option>
+                    <option value="instagram">Instagram Reels</option>
+                    <option value="shopee">Shopee / Afiliados</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="tema">Tema ou Produto:</label>
+                <input type="text" id="tema" placeholder="Ex: Creatina, Curiosidades sobre Microbiologia, Achadinhos...">
+            </div>
+
+            <button id="btnGerar">✨ Gerar Conteúdo Completo</button>
+
+            <div id="resultado" class="resultado-card hidden">
+                <h2>📋 Seu Conteúdo Gerado:</h2>
+                
+                <div class="bloco">
+                    <h3>🎬 Roteiro do Vídeo</h3>
+                    <p id="outRoteiro"></p>
+                </div>
+
+                <div class="bloco">
+                    <h3>✍️ Legenda Sugerida</h3>
+                    <p id="outLegenda"></p>
+                </div>
+
+                <div class="bloco">
+                    <h3>🏷️ Hashtags Virais</h3>
+                    <p id="outHashtags"></p>
+                </div>
+
+                <div class="bloco">
+                    <h3>🖼️ Prompt de Imagem/Vídeo (AI)</h3>
+                    <p id="outPrompt"></p>
+                </div>
+            </div>
+        </main>
     </div>
 
     <script src="script.js"></script>
