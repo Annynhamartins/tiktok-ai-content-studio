@@ -3,9 +3,9 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(_name_)
-CORS(app)
+CORS(app, resources={r"/api/": {"origins": ""}}, supports_credentials=True)
 
-@app.route('/')
+@app.route('/api/simplificar', methods=['POST', 'OPTIONS'])
 def home():
     return jsonify({
         "status": "online",
