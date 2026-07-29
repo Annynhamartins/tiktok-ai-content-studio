@@ -4,55 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TikTok-AI Studio</title>
-    <link rel="stylesheet" href="estilo.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>🚀 TikTok-AI Studio</h1>
-            <p>Gerador automatizado de roteiros, legendas, hashtags e prompts para redes sociais.</p>
-        </header>
+        <h1>🚀 TikTok-AI Studio</h1>
+        <p>Gerador automatizado de roteiros, legendas, hashtags e prompts para redes sociais.</p>
 
-        <main>
-            <div class="form-group">
-                <label for="plataforma">Plataforma Alvo:</label>
-                <select id="plataforma">
-                    <option value="tiktok">TikTok</option>
-                    <option value="instagram">Instagram Reels</option>
-                    <option value="shopee">Shopee / Afiliados</option>
-                </select>
-            </div>
+        <div class="form-group">
+            <label for="plataforma">Plataforma Alvo:</label>
+            <select id="plataforma">
+                <option value="tiktok">TikTok</option>
+                <option value="instagram">Instagram Reels</option>
+                <option value="youtube">YouTube Shorts</option>
+            </select>
+        </div>
 
-            <div class="form-group">
-                <label for="tema">Tema ou Produto:</label>
-                <input type="text" id="tema" placeholder="Ex: Creatina, Curiosidades sobre Microbiologia, Achadinhos...">
-            </div>
+        <div class="form-group">
+            <label for="tema">Tema ou Produto:</label>
+            <input type="text" id="tema" placeholder="Ex: Creatina, Treino em Casa, Dicas de Vendas">
+        </div>
 
-            <button id="btnGerar">✨ Gerar Conteúdo Completo</button>
+        <button id="btnGerar">✨ Gerar Conteúdo Completo</button>
 
-            <div id="resultado" class="resultado-card hidden">
-                <h2>📋 Seu Conteúdo Gerado:</h2>
-                
-                <div class="bloco">
-                    <h3>🎬 Roteiro do Vídeo</h3>
-                    <p id="outRoteiro"></p>
-                </div>
+        <div id="resultado" class="hidden">
+            <h2>📋 Seu Conteúdo Gerado:</h2>
 
-                <div class="bloco">
-                    <h3>✍️ Legenda Sugerida</h3>
-                    <p id="outLegenda"></p>
-                </div>
+            <h3>🎬 Roteiro do Vídeo</h3>
+            <pre id="outRoteiro"></pre>
 
-                <div class="bloco">
-                    <h3>🏷️ Hashtags Virais</h3>
-                    <p id="outHashtags"></p>
-                </div>
+            <h3>✍️ Legenda Sugerida</h3>
+            <pre id="outLegenda"></pre>
 
-                <div class="bloco">
-                    <h3>🖼️ Prompt de Imagem/Vídeo (AI)</h3>
-                    <p id="outPrompt"></p>
-                </div>
-            </div>
-        </main>
+            <h3>🏷️ Hashtags Virais</h3>
+            <pre id="outHashtags"></pre>
+
+            <h3>🖼️ Prompt de Imagem/Vídeo (IA)</h3>
+            <pre id="outPrompt"></pre>
+        </div>
     </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
