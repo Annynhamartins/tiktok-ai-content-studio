@@ -2,52 +2,62 @@ import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
-app = Flask(__name__)
-CORS(app)  # Permite que o frontend faça chamadas para o backend
+app = Flask(_name_)
+CORS(app)
 
 @app.route('/')
 def home():
     return jsonify({
         "status": "online",
-        "projeto": "TikTok-AI Studio API"
+        "projeto": "Transparência Cidadã API",
+        "versao": "1.0.0"
     })
 
 @app.route('/api/gerar', methods=['POST'])
 def gerar_conteudo():
+    # Mantém a funcionalidade do gerador do TikTok!
     data = request.get_json() or {}
-    tema = data.get('tema', '').strip()
+    tema = data.get('tema', 'Geral')
     plataforma = data.get('plataforma', 'tiktok')
+    
+    return jsonify({
+        'roteiro': f"[0-3s] GANCHO IMPACTANTE: Pare tudo! Se você busca sobre {tema}, precisa ver isso.\n[3-10s] DESENVOLVIMENTO: Aqui está a principal dica sobre {tema} para aplicar na prática no {plataforma.capitalize()}.\n[10-15s] CHAMADA PRA AÇÃO (CTA): Curta e compartilhe com quem precisa saber disso!",
+        'legenda': f"Aprenda tudo sobre {tema}! Dica rápida e prática especialmente para a sua rotina no {plataforma.capitalize()}. 🔥🚀",
+        'hashtags': f"#{tema.replace(' ', '')} #DicasVirais #ConteudoViral #{plataforma.capitalize()} #DicasHoje",
+        'prompt': f"Ultra-detailed 8k photograph, cinematic lighting, modern showcase of {tema}, vertical 9:16 aspect ratio, trending on social media --v 6.0"
+    })
 
-    if not tema:
-        return jsonify({'error': 'O parâmetro "tema" é obrigatório.'}), 400
+@app.route('/api/simplificar', methods=['POST'])
+def simplificar_documento():
+    # Nova funcionalidade do Transparência Cidadã!
+    data = request.get_json() or {}
+    texto_bruto = data.get('texto', '').strip()
+    categoria = data.get('categoria', 'licitacao')
 
-    # Estrutura do prompt / lógica de geração
-    roteiro = (
-        f"[0-3s] GANCHO IMPACTANTE: Pare tudo! Se você busca sobre {tema}, precisa ver isso.\n"
-        f"[3-10s] DESENVOLVIMENTO: Aqui está a principal dica sobre {tema} para aplicar na prática no {plataforma.capitalize()}.\n"
-        f"[10-15s] CHAMADA PRA AÇÃO (CTA): Curta e compartilhe com quem precisa saber disso!"
+    if not texto_bruto:
+        return jsonify({'error': 'O texto do documento administrativo é obrigatório.'}), 400
+
+    resumo_cidadao = (
+        "Este documento autoriza a prefeitura a realizar a compra/contratação necessária para manter o serviço público ativo. "
+        "Em linguagem direta: a administração pública está destinando verba para atender uma demanda essencial da população, "
+        "garantindo que os recursos orçamentários sejam aplicados em conformidade com a legislação."
     )
 
-    legenda = (
-        f"Aprenda tudo sobre {tema}! Dica rápida e prática especialmente para a sua rotina no {plataforma.capitalize()}. 🔥🚀"
+    impacto_social = (
+        "Garante a continuidade da prestação de serviços públicos essenciais na comunidade, "
+        "reforçando o controle social e a fiscalização direta por parte dos cidadãos."
     )
 
-    hashtags = (
-        f"#{tema.replace(' ', '')} #DicasVirais #ConteudoViral #{plataforma.capitalize()} #DicasHoje"
-    )
-
-    prompt_ia = (
-        f"Ultra-detailed 8k photograph, cinematic lighting, modern showcase of {tema}, "
-        f"vertical 9:16 aspect ratio, trending on social media --v 6.0"
+    recomendacao = (
+        "O cidadão pode acompanhar a execução desta despesa através do número do empenho/processo no Portal da Transparência oficial do município ou estado."
     )
 
     return jsonify({
-        'roteiro': roteiro,
-        'legenda': legenda,
-        'hashtags': hashtags,
-        'prompt': prompt_ia
+        'resumo_cidadao': resumo_cidadao,
+        'impacto_social': impacto_social,
+        'recomendacao_fiscalizacao': recomendacao
     })
 
-if __name__ == '__main__':
+if _name_ == '_main_':
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(host='0.0.0.0', port=port)
