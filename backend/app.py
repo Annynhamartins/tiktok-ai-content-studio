@@ -2,7 +2,7 @@ import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
-app = Flask(_name_)
+app = Flask(__name__)
 # Libera o acesso para o GitHub Pages
 CORS(app, resources={r"/api/": {"origins": ""}}, supports_credentials=True)
 
@@ -43,6 +43,6 @@ def gerar_conteudo():
         'prompt': f"Ultra-detailed 8k photograph, cinematic lighting, modern showcase of {tema}, vertical 9:16 aspect ratio, trending on social media --v 6.0"
     })
 
-if _name_ == '_main_':
+if __name__ == '_main_':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
