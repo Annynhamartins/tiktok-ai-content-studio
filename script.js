@@ -1,44 +1,59 @@
-document.getElementById('btnGerar').addEventListener('click', async function() {
-    const tema = document.getElementById('tema').value.trim();
-    const plataforma = document.getElementById('plataforma').value;
-    const btn = document.getElementById('btnGerar');
+document.addEventListener('DOMContentLoaded', () => {
+    // Procura os elementos na tela
+    const btnGerar = document.getElementById('btnGerar') || document.querySelector('button');
+    const inputTema = document.getElementById('tema') || document.querySelector('input') || document.querySelector('textarea');
 
-    if (!tema) {
-        alert("Por favor, digite um tema ou produto!");
-        return;
-    }
+    if (btnGerar) {
+        btnGerar.addEventListener('click', async (e) => {
+            e.preventDefault();
 
-    btn.innerText = "⏳ Gerando com IA...";
-    btn.disabled = true;
+            const tema = inputTema ? inputTema.value.trim() : '';
 
-    try {
-        // Conecta diretamente ao seu servidor online no Render
-        const response = await fetch('https://tiktok-ai-content-studio.onrender.com/api/gerar', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ tema: tema, plataforma: plataforma })
+            if (!tema) {
+                alert('Por favor, digite um tema ou comentário!');
+                return;
+            }
+
+            const textoOriginal = btnGerar.innerText;
+            btnGerar.disabled = true;
+            btnGerar.innerText = '⏳ Gerando com IA...';
+
+            try {
+                // Conecta com o backend do TikTok no Render
+                const response = await fetch('https://tiktok-ai-content-studio.onrender.com/api/gerar-roteiro', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ tema: tema })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Exibe os resultados nos campos da tela
+                    const boxGancho = document.getElementById('res-gancho') || document.getElementById('gancho');
+                    const boxConteudo = document.getElementById('res-conteudo') || document.getElementById('conteudo');
+                    const boxCta = document.getElementById('res-cta') || document.getElementById('cta');
+
+                    if (boxGancho) boxGancho.innerText = data.gancho || '';
+                    if (boxConteudo) boxConteudo.innerText = data.conteudo || '';
+                    if (boxCta) boxCta.innerText = data.cta || '';
+
+                    // Se não houver caixas separadas, mostra um alerta com o resultado
+                    if (!boxGancho && !boxConteudo) {
+                        alert(🪝 GANCHO:\n${data.gancho}\n\n📝 CONTEÚDO:\n${data.conteudo}\n\n📢 CTA:\n${data.cta});
+                    }
+                } else {
+                    alert('Erro no servidor: ' + (data.error || 'Ocorreu um erro ao processar.'));
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Não foi possível conectar ao servidor. O servidor pode estar inicializando (leva cerca de 30s na primeira vez). Tente novamente!');
+            } finally {
+                btnGerar.disabled = false;
+                btnGerar.innerText = textoOriginal;
+            }
         });
-
-        if (!response.ok) {
-            throw new Error("Erro ao se comunicar com o servidor.");
-        }
-
-        const data = await response.json();
-
-        // Exibe os resultados no painel
-        document.getElementById('outRoteiro').innerText = data.roteiro;
-        document.getElementById('outLegenda').innerText = data.legenda;
-        document.getElementById('outHashtags').innerText = data.hashtags;
-        document.getElementById('outPrompt').innerText = data.prompt;
-
-        document.getElementById('resultado').classList.remove('hidden');
-    } catch (error) {
-        alert("Não foi possível conectar ao servidor. Aguarde alguns instantes e tente novamente.");
-        console.error(error);
-    } finally {
-        btn.innerText = "✨ Gerar Conteúdo Completo";
-        btn.disabled = false;
     }
 });
